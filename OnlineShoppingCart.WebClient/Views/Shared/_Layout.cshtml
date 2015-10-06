@@ -1,0 +1,114 @@
+﻿@using OnlineShoppingCart.Model
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/kendo")
+    <script src="~/Scripts/ddmenu.js"></script>
+
+
+    <link href="~/Content/MenuStyles.css" rel="stylesheet" />
+    <link href="~/Content/ddmenu.css" rel="stylesheet" />
+    <style>
+        /*The following are for this demo page only (not required for the ddmenu).*/
+        body {
+            background: #eee url(~/Images/ddmenu-bg.jpg) no-repeat center 0px;
+            padding-top: 90px;
+        }
+
+        /*#wrap {
+            width: auto;
+            position: relative;
+        }
+
+        .left, .right {
+            width: 150px;
+            //or use 30% float: left;
+        }
+
+        .center {
+            float: left;
+            min-width: 800px;
+            //or use 60% width: auto;
+            position: relative;
+        }
+
+        .clearBoth {
+            clear: both;
+        }*/
+    </style>
+
+    @Styles.Render("~/Content/kendo/css")
+    @Styles.Render("~/Content/css")
+
+
+    <script src="~/Scripts/Common.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">@Html.ActionLink("your logo here", "Index", "NewsListing")</p>
+
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    @Html.Partial("_LoginPartial")
+                </section>
+                <nav>
+                    <ul id="menu">
+
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+
+        <div id="category">
+            <h2 style="color: white">Click Here To Shop By Category</h2>
+
+            <br />
+        </div>
+        
+        
+            
+        
+
+
+
+        @*@RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            
+            @RenderBody()
+        </section>*@
+        @RenderBody()
+    </div>
+
+
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+            </div>
+        </div>
+    </footer>
+    @RenderSection("scripts", required: false)
+</body>
+
+
+</html>

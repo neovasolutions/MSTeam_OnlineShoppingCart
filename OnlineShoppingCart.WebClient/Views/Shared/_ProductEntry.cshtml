@@ -1,0 +1,182 @@
+﻿@model OnlineShoppingCart.Model.Product
+
+<h2>Product Entry Form</h2>
+
+
+<form id="productForm" enctype="multipart/form-data">
+    @Html.ValidationSummary(true)
+    @*@Html.AntiForgeryToken()*@
+    <table>
+        <tr>
+            @if (ViewBag.Mode == "Edit")
+            {
+                @Html.HiddenFor(model => model.ID)
+            }
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ProductCode)
+                </div>
+                <div class="editor-field">
+                    @(Html.TextBoxFor(model => model.ProductCode, new { style = "width:225px" }))
+                </div>
+            </td>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.IsActive)
+                </div>
+                <div class="editor-field">
+                    @Html.Kendo().CheckBoxFor(model => model.IsActive)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ProductName)
+                </div>
+                <div class="editor-field">
+                    @(Html.TextBoxFor(model => model.ProductName, new { style = "width:550px" }))
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ProductDescription)
+                </div>
+                <div class="editor-field">
+
+                    @(Html.TextAreaFor(model => model.ProductDescription, new { style = "width:550px" }))
+                    @*@(Html.Kendo().(model => model.ProductDescription))*@
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CategoryID)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().DropDownListFor(model => model.CategoryID)
+                        .OptionLabel("Select Category")
+                        .Name("CategoryID")
+                        .DataTextField("Category")
+                        .DataValueField("ID")
+                        .DataSource(source =>
+                        {
+                            source.Read(read =>
+                            {
+                                read.Action("GetCategories", "Product");
+                            })
+                          .ServerFiltering(true);
+                        })
+                     )
+                </div>
+            </td>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Brand)
+                </div>
+                <div class="editor-field">
+                    @Html.Kendo().TextBoxFor(model => model.Brand)
+                </div>
+            </td>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Model)
+                </div>
+                <div class="editor-field">
+                    @Html.Kendo().TextBoxFor(model => model.Model)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.UnitPrice)
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().NumericTextBoxFor(model => model.UnitPrice))
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SKU)
+
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().TextBoxFor(model => model.SKU))
+                </div>
+            </td>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CurrentStock)
+
+                </div>
+                <div class="editor-field">
+
+                    @(Html.Kendo().NumericTextBoxFor(model => model.CurrentStock))
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                @if (ViewBag.Mode != "Edit")
+                { 
+                    <input id="fuIMGAdd1" type="file" name="file1" onclick="testImageType()">
+                    <input id="fuPDFAdd2" type="file" name="file2">
+                    <input id="fuPDFAdd3" type="file" name="file3">
+                    <input id="fuPDFAdd4" type="file" name="file4">
+                    <input id="fuPDFAdd5" type="file" name="file5">
+                }
+                <div id="txtuploadedMsgAdd" style="color: blue"></div>
+                <div id="divProdInsertedErrorMessage" class="customError"></div>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td colspan="1">
+                @if (ViewBag.Mode == "Edit")
+                {
+                    @*<input id="btnUpdateProduct" type="button" value="Edit Product" onclick="UpdateProduct()" />*@
+                    @(Html.Kendo().Button()
+                    .Name("btnUpdateProduct")
+                    .HtmlAttributes(new { type = "button" })
+                    .Content("Update Product")
+                    .Events(ev => ev.Click("UpdateProduct")))
+                }
+                else
+                {
+                    @*<input id="btnEnterProduct" type="button" value="Add product" onclick="InsertProduct()" />*@
+                    @(Html.Kendo().Button()
+                    .Name("btnUpdateProduct")
+                    .HtmlAttributes(new { type = "button" })
+                    .Content("Add product")
+                    .Events(ev => ev.Click("InsertProduct")))
+                    
+                }
+                @*<input id="btnCancelAddProduct" type="button" value="Cancel" onclick="CallGetPartial()" />*@
+
+                @(Html.Kendo().Button()
+                .Name("btnCancelAddProduct")
+                .HtmlAttributes(new { type = "button" })
+                .Content("Cancel")
+                .Events(ev => ev.Click("CallGetPartial")))
+            </td>
+
+        </tr>
+    </table>
+    @Html.ValidationMessageFor(model => model.ProductCode)<br />
+    @Html.ValidationMessageFor(model => model.ProductName)<br />
+    @Html.ValidationMessageFor(model => model.CategoryID)<br />
+    @Html.ValidationMessageFor(model => model.UnitPrice)<br />
+    @Html.ValidationMessageFor(model => model.CurrentStock)<br />
+
+</form>

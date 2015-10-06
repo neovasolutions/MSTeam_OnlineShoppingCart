@@ -1,0 +1,130 @@
+﻿@model OnlineShoppingCart.Model.Product
+
+
+<div id="divMessage" style="color:green"></div>
+<div id="dvError"></div>
+
+<div id="div_ProdListPage">
+    @*<h2>Product List</h2>*@
+<h2>Product Search</h2>
+<form id="productSearchForm">
+<table>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ProductCode)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().TextBoxFor(model => model.ProductCode).Name("productCode"))
+            </div>
+        </td>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ProductName)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().TextBoxFor(model => model.ProductName).Name("productName"))
+            </div>
+        </td>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ProductDescription)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().TextBoxFor(model => model.ProductDescription).Name("productDescription"))
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CategoryID)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().DropDownListFor(model => model.CategoryID)
+                        .OptionLabel("Select Category")
+                        .Name("CategoryID")
+                        .DataTextField("Category")
+                        .DataValueField("ID")
+                        .DataSource(source =>
+                        {
+                            source.Read(read =>
+                            {
+                                read.Action("GetCategories", "Product");
+                            })
+                          .ServerFiltering(true);
+                        })
+                     )
+            </div>
+        </td>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Brand)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().TextBoxFor(model => model.Brand).Name("brand"))
+            </div>
+        </td>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Model)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().TextBoxFor(model => model.Model).Name("model"))
+            </div>
+        </td>
+    </tr>
+</table>
+</form>
+
+@*<input id="btnSearchProduct" type="button" value="Search" onclick="SearchProduct()"/>*@
+@*<input id="btnAddNewProductForm" type="button" value="Add New" onclick="LoadProductNew()" />*@
+@*<input id="btnEditProductForm" type="button" value="Edit" onclick="LoadProductEdit()" />*@
+@*<input id="btnDeleteProduct" type="button" value="Delete" onclick="DeleteProduct()" />*@
+   <br /><br /><br />
+    @(Html.Kendo().Button()
+    .Name("btnSearchProduct")
+    .HtmlAttributes( new {type = "button"} )
+    .Content("Search")
+    .Events(ev => ev.Click("SearchProduct")))
+
+    @(Html.Kendo().Button()
+    .Name("btnClearSearchParams")
+    .HtmlAttributes( new {type = "button"} )
+    .Content("Clear")
+    .Events(ev => ev.Click("ClearSearchParams")))
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    @(Html.Kendo().Button()
+    .Name("btnAddNewProductForm")
+    .HtmlAttributes( new {type = "button"} )
+    .Content("Add New")
+    .Events(ev => ev.Click("LoadProductNew")))
+
+
+    @(Html.Kendo().Button()
+    .Name("btnEditProductForm")
+    .HtmlAttributes( new {type = "button"} )
+    .Content("Edit")
+    .Events(ev => ev.Click("LoadProductEdit")))
+
+
+    @(Html.Kendo().Button()
+    .Name("btnDeleteProduct")
+    .HtmlAttributes( new {type = "button"} )
+    .Content("Delete")
+    .Events(ev => ev.Click("DeleteProduct")))
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    @(Html.Kendo().Button()
+    .Name("btnAddProductCategory")
+    .HtmlAttributes( new {type = "button"} )
+    .Content("Add Category")
+    .Events(ev => ev.Click("AddNewProductCategory")))
+
+    <br /><br /><br />
+<div id="allProductsList" style='overflow:auto;'>
+    @(Html.Partial("_ProductsGridList"))
+</div>
+
+</div>

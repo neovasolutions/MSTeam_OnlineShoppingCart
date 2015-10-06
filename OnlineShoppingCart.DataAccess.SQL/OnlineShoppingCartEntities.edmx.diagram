@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bce5ecd841584d09aeecc2fc071c24d6" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineShoppingCartModel.Cart" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingCartModel.CartHistory" Width="1.5" PointX="5.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingCartModel.CartItem" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingCartModel.POLineItem" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingCartModel.Product" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingCartModel.ProductCategory" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingCartModel.ProductImageFilePath" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingCartModel.PurchaseOrder" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingCartModel.WishList" Width="1.5" PointX="5.25" PointY="17.75" IsExpanded="true" />
+        <AssociationConnector Association="OnlineShoppingCartModel.FK_CartHistory_Cart" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingCartModel.FK_CartItems_Cart" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingCartModel.FK_PurchaseOrder_Cart" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingCartModel.FK_CartItems_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingCartModel.FK_POLineItems_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingCartModel.FK_POLineItems_PurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingCartModel.FK_Product_ProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingCartModel.FK_ProductImageFilePath_Product1" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingCartModel.FK_WishList_Product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

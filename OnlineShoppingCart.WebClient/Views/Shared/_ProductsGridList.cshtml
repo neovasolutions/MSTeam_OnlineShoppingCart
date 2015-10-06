@@ -1,0 +1,49 @@
+﻿<div>
+@(Html.Kendo().Grid<OnlineShoppingCart.Model.Product>()  //Bind the grid to ViewBag.Products
+      .Name("allProductsListGrid")
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Read(read => read
+              .Action("Prod_Read", "Product")
+              .Data("productsReadData")
+              ) // Set the action method which will return the data in JSON format
+      )
+      .Events(events => events.Change("onChange"))
+      .Columns(columns =>
+      {
+          columns.Bound(prod => prod.ID);
+          columns.Bound(prod => prod.ProductCode);
+          columns.Bound(prod => prod.ProductName);
+          columns.Bound(prod => prod.ProductDescription);
+          //columns.Bound(prod => prod.CategoryID);
+          columns.Bound(prod => prod.Brand);
+          columns.Bound(prod => prod.Model);
+          columns.Bound(prod => prod.UnitPrice);
+          columns.Bound(prod => prod.SKU);
+          //columns.Bound(prod => prod.CurrentStock);
+          //columns.Bound(prod => prod.CreatedOn).Format("{0:dd/MM/yyyy}");
+          //columns.Bound(prod => prod.UpdatedOn).Format("{0:dd/MM/yyyy}");
+          //columns.Bound(prod => prod.CretedByUserID);
+          //columns.Bound(prod => prod.UpdatedByUserID);    
+          //columns.Bound(news => news.CreatedDate).Format("{0:dd/MM/yyyy}");
+          //columns.Bound(news => news.UpdatedDate).Format("{0:dd/MM/yyyy}");
+      })
+      .Pageable() // Enable paging
+      .Sortable()
+      .Selectable(selectable => selectable
+                  .Mode(GridSelectionMode.Multiple))
+      .Filterable()
+)</div>
+
+<script>
+function productsReadData() {
+    return {
+        productCode:$("#productCode").val() ,
+        productName: $("#productName").val(),
+        productDescription: $("#productDescription").val(),
+        categoryID: $("#CategoryID").val(),
+        brand: $("#brand").val(),
+        model: $("#model").val()
+    };
+}
+</script>

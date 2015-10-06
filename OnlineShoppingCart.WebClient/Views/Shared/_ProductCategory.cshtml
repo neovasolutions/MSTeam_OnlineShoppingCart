@@ -1,0 +1,32 @@
+﻿@model OnlineShoppingCart.Model.ProductCategory
+<div id="divCatErrorMessage" style="color:red"></div>
+<h2>Add Category</h2>
+<form id="prodCategory">
+    <table>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Category)
+                </div>
+                <div class="editor-field">
+                    @(Html.TextBoxFor(model => model.Category))
+                </div>
+            </td>
+        </tr>
+        <tr>            
+                @(Html.Kendo().Button()
+                .Name("btnAddCategory")
+                .HtmlAttributes(new { type = "button" })
+                .Content("Add Category")
+                .Events(ev => ev.Click("AddCategory")))            
+             
+                @(Html.Kendo().Button()
+                .Name("btnCancelAddCategory")
+                .HtmlAttributes(new { type = "button" })
+                .Content("Cancel")
+                .Events(ev => ev.Click("CallGetPartial")))            
+        </tr>
+
+
+    </table>
+</form>

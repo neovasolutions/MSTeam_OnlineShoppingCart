@@ -1,0 +1,17 @@
+﻿@model IEnumerable<OnlineShoppingCart.Model.Product>
+@using OnlineShoppingCart.Model
+
+@if (Model != null)
+{
+    <table>
+        <tr>
+            @foreach (Product prod in Model)
+            {
+                <td>
+                    @prod.ProductName
+                </td>
+            }
+        </tr>
+    </table>
+
+}
